@@ -175,14 +175,14 @@ public class MainActivity extends Activity {
 				hourMaxTemp = "high of " + hourMaxTemp + "°c";
 				hourMinTemp = "low of " + hourMinTemp+ "°c";
 
-                int windSpeedInt = Integer.valueOf(windSpeed);
-                
+                float windSpeedInt = Float.valueOf(windSpeed);
+
                 if(windSpeedInt == 0){
                     windchill = temp;
                 }
 
 				windchill = "feels like " + windchill+ "°c";
-				windSpeed = windSpeed + "kph";
+				windSpeed = windSpeed + "km/h";
 
                 int windDirectionInt = Integer.valueOf(windDirection);
 
