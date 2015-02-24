@@ -18,8 +18,10 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -58,6 +60,8 @@ public class MainActivity extends Activity {
 
     SwipeRefreshLayout swipeLayout;
     WeatherListTask loaderTask;
+
+    int statusCode;
 
 
 
@@ -120,6 +124,8 @@ public class MainActivity extends Activity {
 			super.onPreExecute();
 		}
 
+        AlertDialog.Builder alert = new AlertDialog.Builder(context);
+
 		@Override
 		protected Void doInBackground(Void... params) {
 			// TODO Auto-generated method stub
@@ -129,13 +135,8 @@ public class MainActivity extends Activity {
 			try {
 				HttpResponse responce = client.execute(getRequest);
 				StatusLine statusLine = responce.getStatusLine();
-				int statusCode = statusLine.getStatusCode();
-				
-				if(statusCode != 200){
-					
-					return null;
-				}
-				
+				statusCode = statusLine.getStatusCode();
+
 				InputStream jsonStream = responce.getEntity().getContent();
 				BufferedReader reader = new BufferedReader(new InputStreamReader(jsonStream));
 				StringBuilder builder = new StringBuilder();
@@ -171,17 +172,20 @@ public class MainActivity extends Activity {
 				Date time = new Date();
 				Time = fmt.format(time);
 				
-				temp = temp + "°c";
+				String tempInt;
+                tempInt = temp;
+
+                temp = temp + "°c";
 				hourMaxTemp = "high of " + hourMaxTemp + "°c";
 				hourMinTemp = "low of " + hourMinTemp+ "°c";
 
                 float windSpeedInt = Float.valueOf(windSpeed);
 
                 if(windSpeedInt == 0){
-                    windchill = temp;
+                    windchill = tempInt;
                 }
 
-				windchill = "feels like " + windchill+ "°c";
+				windchill = "feels like " + windchill + "°c";
 				windSpeed = windSpeed + "km/h";
 
                 int windDirectionInt = Integer.valueOf(windDirection);
@@ -241,7 +245,20 @@ public class MainActivity extends Activity {
 		protected void onPostExecute(Void result) {
 			// TODO Auto-generated method stub
 			dialog.dismiss();
-	
+
+            if(statusCode == 200){
+                alert.setMessage("You don't seem to be connected to the internet. Try again with a valid internet connection.");
+                alert.setPositiveButton("Okay",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                dialog.cancel();
+                            }
+                        });
+
+                AlertDialog alertDialog = alert.create();
+                alertDialog.show();
+            }
+
 			super.onPostExecute(result);
 			
 			textView.setText(date);
