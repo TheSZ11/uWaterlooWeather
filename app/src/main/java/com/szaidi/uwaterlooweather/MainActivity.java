@@ -4,6 +4,8 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.net.Inet4Address;
+import java.net.InetAddress;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -23,6 +25,8 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Color;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -65,7 +69,18 @@ public class MainActivity extends Activity {
 
 
 
-	@Override
+
+    public boolean isInternetAvailable(){
+        ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo nInfo = cm.getActiveNetworkInfo();
+        if(nInfo != null && nInfo.isConnectedOrConnecting()){
+            return true;
+        }
+        return false;
+    }
+
+
+    @Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -75,6 +90,22 @@ public class MainActivity extends Activity {
 		
 		context = this;
 
+        AlertDialog.Builder alert = new AlertDialog.Builder(context);
+
+        if(!isInternetAvailable()){
+            alert.setTitle("Connectivity Issues");
+            alert.setMessage("Check your internet connection and try again.");
+            alert.setPositiveButton("Okay",
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            dialog.cancel();
+                        }
+                    });
+
+            AlertDialog alertDialog = alert.create();
+            alertDialog.show();
+        }
+
 		loaderTask = new WeatherListTask();
 		loaderTask.execute();
 
@@ -82,6 +113,7 @@ public class MainActivity extends Activity {
         swipeLayout.setColorSchemeColors(Color.BLACK, Color.YELLOW);
 
         swipeLayout.setOnRefreshListener(onRefreshListener);
+
 
 
         textView = (TextView) findViewById(R.id.textView);
@@ -99,6 +131,23 @@ public class MainActivity extends Activity {
     OnRefreshListener onRefreshListener = new OnRefreshListener() {
         @Override
         public void onRefresh() {
+
+            AlertDialog.Builder alert = new AlertDialog.Builder(context);
+
+            if(!isInternetAvailable()){
+                alert.setTitle("Connectivity Issues");
+                alert.setMessage("Check your internet connection and try again.");
+                alert.setPositiveButton("Okay",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                dialog.cancel();
+                            }
+                        });
+
+                AlertDialog alertDialog = alert.create();
+                alertDialog.show();
+            }
+
             WeatherListTask refreshTask = new WeatherListTask();
             refreshTask.execute();
             swipeLayout.setRefreshing(false);
@@ -118,15 +167,18 @@ public class MainActivity extends Activity {
 		@Override
 		protected void onPreExecute() {
 			// TODO Auto-generated method stub
+
+
+
 			dialog = new ProgressDialog(context);
 			dialog.setTitle("Connecting to satellites...");
 			dialog.show();
 			super.onPreExecute();
 		}
 
-        AlertDialog.Builder alert = new AlertDialog.Builder(context);
 
-		@Override
+
+        @Override
 		protected Void doInBackground(Void... params) {
 			// TODO Auto-generated method stub
 			HttpClient client = new DefaultHttpClient();
@@ -186,7 +238,7 @@ public class MainActivity extends Activity {
                 }
 
 				windchill = "feels like " + windchill + "°c";
-				windSpeed = windSpeed + "km/h";
+				windSpeed = windSpeed + " km/h";
 
                 int windDirectionInt = Integer.valueOf(windDirection);
 
@@ -241,23 +293,14 @@ public class MainActivity extends Activity {
 			return null;
 		}
 
+
+
 		@Override
 		protected void onPostExecute(Void result) {
 			// TODO Auto-generated method stub
 			dialog.dismiss();
 
-            if(statusCode == 200){
-                alert.setMessage("You don't seem to be connected to the internet. Try again with a valid internet connection.");
-                alert.setPositiveButton("Okay",
-                        new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int id) {
-                                dialog.cancel();
-                            }
-                        });
 
-                AlertDialog alertDialog = alert.create();
-                alertDialog.show();
-            }
 
 			super.onPostExecute(result);
 			
