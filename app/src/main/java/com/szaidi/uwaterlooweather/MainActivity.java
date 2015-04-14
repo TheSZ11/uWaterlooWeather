@@ -37,30 +37,30 @@ import android.view.WindowManager;
 import android.widget.TextView;
 
 public class MainActivity extends Activity {
-	
-	Context context;
-	String feedUrl = "https://api.uwaterloo.ca/v2/weather/current.json";
-	
-	String temp;
-	String observationTime;
-	String windchill;
-	String hourMaxTemp;
-	String hourMinTemp;
-	String windSpeed;
-	String windDirection;
-	String observationDate;
-	String date;
-	String Time;
-	
-	
-	TextView textView;
-	TextView textViewObservationDate;
-	TextView textViewObservationTime;
-	TextView textViewWindchill;
-	TextView textViewHourMaxTemp;
-	TextView textViewHourMinTemp;
-	TextView textViewWindSpeed;
-	TextView textViewWindDirection;
+
+    Context context;
+    String feedUrl = "https://api.uwaterloo.ca/v2/weather/current.json";
+
+    String temp;
+    String observationTime;
+    String windchill;
+    String hourMaxTemp;
+    String hourMinTemp;
+    String windSpeed;
+    String windDirection;
+    String observationDate;
+    String date;
+    String Time;
+
+
+    TextView textView;
+    TextView textViewObservationDate;
+    TextView textViewObservationTime;
+    TextView textViewWindchill;
+    TextView textViewHourMaxTemp;
+    TextView textViewHourMinTemp;
+    TextView textViewWindSpeed;
+    TextView textViewWindDirection;
 
     SwipeRefreshLayout swipeLayout;
     WeatherListTask loaderTask;
@@ -68,12 +68,10 @@ public class MainActivity extends Activity {
     int statusCode;
 
 
-
-
-    public boolean isInternetAvailable(){
+    public boolean isInternetAvailable() {
         ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo nInfo = cm.getActiveNetworkInfo();
-        if(nInfo != null && nInfo.isConnectedOrConnecting()){
+        if (nInfo != null && nInfo.isConnectedOrConnecting()) {
             return true;
         }
         return false;
@@ -81,18 +79,18 @@ public class MainActivity extends Activity {
 
 
     @Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		requestWindowFeature(Window.FEATURE_NO_TITLE);
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-            WindowManager.LayoutParams.FLAG_FULLSCREEN);
-		setContentView(R.layout.activity_main);
-		
-		context = this;
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        setContentView(R.layout.activity_main);
+
+        context = this;
 
         AlertDialog.Builder alert = new AlertDialog.Builder(context);
 
-        if(!isInternetAvailable()){
+        if (!isInternetAvailable()) {
             alert.setTitle("Connectivity Issues");
             alert.setMessage("Your feed could not be updated at this time, please check your internet connection and try again.");
             alert.setPositiveButton("Okay",
@@ -106,8 +104,8 @@ public class MainActivity extends Activity {
             alertDialog.show();
         }
 
-		loaderTask = new WeatherListTask();
-		loaderTask.execute();
+        loaderTask = new WeatherListTask();
+        loaderTask.execute();
 
         swipeLayout = (SwipeRefreshLayout) findViewById(R.id.swipe_container);
         swipeLayout.setColorSchemeColors(Color.BLACK, Color.YELLOW);
@@ -115,18 +113,17 @@ public class MainActivity extends Activity {
         swipeLayout.setOnRefreshListener(onRefreshListener);
 
 
-
         textView = (TextView) findViewById(R.id.textView);
-		textViewObservationDate = (TextView) findViewById(R.id.textViewObservationDate);
-		textViewObservationTime = (TextView) findViewById(R.id.textViewObservationTime);
-		textViewWindchill = (TextView) findViewById(R.id.textViewWindchill);
-		textViewHourMaxTemp = (TextView) findViewById(R.id.textViewHourMaxTemp);
-		textViewHourMinTemp= (TextView) findViewById(R.id.textViewHourMinTemp);
-		textViewWindSpeed= (TextView) findViewById(R.id.textViewWindSpeed);
-		textViewWindDirection = (TextView) findViewById(R.id.textViewWindDirection);
-		
-		
-	}
+        textViewObservationDate = (TextView) findViewById(R.id.textViewObservationDate);
+        textViewObservationTime = (TextView) findViewById(R.id.textViewObservationTime);
+        textViewWindchill = (TextView) findViewById(R.id.textViewWindchill);
+        textViewHourMaxTemp = (TextView) findViewById(R.id.textViewHourMaxTemp);
+        textViewHourMinTemp = (TextView) findViewById(R.id.textViewHourMinTemp);
+        textViewWindSpeed = (TextView) findViewById(R.id.textViewWindSpeed);
+        textViewWindDirection = (TextView) findViewById(R.id.textViewWindDirection);
+
+
+    }
 
     OnRefreshListener onRefreshListener = new OnRefreshListener() {
         @Override
@@ -134,7 +131,7 @@ public class MainActivity extends Activity {
 
             AlertDialog.Builder alert = new AlertDialog.Builder(context);
 
-            if(!isInternetAvailable()){
+            if (!isInternetAvailable()) {
                 alert.setTitle("Connectivity Issues");
                 alert.setMessage("Your feed could not be updated at this time, please check your internet connection and try again.");
                 alert.setPositiveButton("Okay",
@@ -154,91 +151,83 @@ public class MainActivity extends Activity {
         }
     };
 
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.main, menu);
-		return true;
-	}
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.main, menu);
+        return true;
+    }
 
-	public class WeatherListTask extends AsyncTask<Void, Void, Void >{
+    public class WeatherListTask extends AsyncTask<Void, Void, Void> {
 
-		ProgressDialog dialog;
-		@Override
-		protected void onPreExecute() {
-			// TODO Auto-generated method stub
+        ProgressDialog dialog;
+
+        @Override
+        protected void onPreExecute() {
+            // TODO Auto-generated method stub
 
 
-
-			dialog = new ProgressDialog(context);
-			dialog.setTitle("Connecting to satellites...");
-			dialog.show();
-			super.onPreExecute();
-		}
-
+            dialog = new ProgressDialog(context);
+            dialog.setTitle("Connecting to satellites...");
+            dialog.show();
+            super.onPreExecute();
+        }
 
 
         @Override
-		protected Void doInBackground(Void... params) {
-			// TODO Auto-generated method stub
-			HttpClient client = new DefaultHttpClient();
-			HttpGet getRequest = new HttpGet(feedUrl);
-			
-			try {
-				HttpResponse responce = client.execute(getRequest);
-				StatusLine statusLine = responce.getStatusLine();
-				statusCode = statusLine.getStatusCode();
+        protected Void doInBackground(Void... params) {
+            // TODO Auto-generated method stub
+            HttpClient client = new DefaultHttpClient();
+            HttpGet getRequest = new HttpGet(feedUrl);
 
-				InputStream jsonStream = responce.getEntity().getContent();
-				BufferedReader reader = new BufferedReader(new InputStreamReader(jsonStream));
-				StringBuilder builder = new StringBuilder();
-				String line;
-				while((line = reader.readLine()) != null){
-					
-					builder.append(line);
-				}
-				
-				String jsonData = builder.toString();
-				
-				JSONObject json = new JSONObject(jsonData);
-				JSONObject weather = json.getJSONObject("data");
-				temp = weather.getString("temperature_current_c");
-				observationTime = weather.getString("observation_time");
-				windchill = weather.getString("windchill_c");
-				hourMaxTemp = weather.getString("temperature_24hr_max_c");
-				hourMinTemp = weather.getString("temperature_24hr_min_c");
-				windSpeed = weather.getString("wind_speed_kph");
-				windDirection = weather.getString("wind_direction_degrees");
-				
-				
-				SimpleDateFormat input = new SimpleDateFormat("yyyy-MM-dd");
-				SimpleDateFormat output = new SimpleDateFormat("dd MMM yyyy");
-				try {
-				    Date Date = input.parse(observationTime);                 // parse input 
-				    date = (output.format(Date));    // format output
-				} catch (ParseException e) {
-				    e.printStackTrace();
-				}
-		
-				SimpleDateFormat fmt = new SimpleDateFormat("HH:mm:ss");
-				Date time = new Date();
-				Time = fmt.format(time);
-				
-				String tempInt;
-                tempInt = temp;
+            try {
+                HttpResponse responce = client.execute(getRequest);
+                StatusLine statusLine = responce.getStatusLine();
+                statusCode = statusLine.getStatusCode();
 
-                temp = temp + "°c";
-				hourMaxTemp = "high of " + hourMaxTemp + "°c";
-				hourMinTemp = "low of " + hourMinTemp+ "°c";
+                InputStream jsonStream = responce.getEntity().getContent();
+                BufferedReader reader = new BufferedReader(new InputStreamReader(jsonStream));
+                StringBuilder builder = new StringBuilder();
+                String line;
+                while ((line = reader.readLine()) != null) {
 
-                float windSpeedInt = Float.valueOf(windSpeed);
-
-                if(windSpeedInt == 0){
-                    windchill = tempInt;
+                    builder.append(line);
                 }
 
-				windchill = "feels like " + windchill + "°c";
-				windSpeed = windSpeed + " km/h";
+                String jsonData = builder.toString();
+
+                JSONObject json = new JSONObject(jsonData);
+                JSONObject weather = json.getJSONObject("data");
+                temp = weather.getString("temperature_current_c");
+                observationTime = weather.getString("observation_time");
+                windchill = weather.getString("windchill_c");
+                hourMaxTemp = weather.getString("temperature_24hr_max_c");
+                hourMinTemp = weather.getString("temperature_24hr_min_c");
+                windSpeed = weather.getString("wind_speed_kph");
+                windDirection = weather.getString("wind_direction_degrees");
+
+
+                SimpleDateFormat input = new SimpleDateFormat("yyyy-MM-dd");
+                SimpleDateFormat output = new SimpleDateFormat("dd MMM yyyy");
+                try {
+                    Date Date = input.parse(observationTime);                 // parse input
+                    date = (output.format(Date));    // format output
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+
+                SimpleDateFormat fmt = new SimpleDateFormat("HH:mm:ss");
+                Date time = new Date();
+                Time = fmt.format(time);
+
+
+                temp = temp + "°c";
+                hourMaxTemp = "high of " + hourMaxTemp + "°c";
+                hourMinTemp = "low of " + hourMinTemp + "°c";
+
+
+                windchill = "feels like " + windchill + "°c";
+                windSpeed = windSpeed + " km/h";
 
                 int windDirectionInt = Integer.valueOf(windDirection);
 
@@ -279,41 +268,39 @@ public class MainActivity extends Activity {
                 } else {
                     windDirection = "-";
                 }
-				
-			} catch (ClientProtocolException e) {
-				
-				e.printStackTrace();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (JSONException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			return null;
-		}
+
+            } catch (ClientProtocolException e) {
+
+                e.printStackTrace();
+            } catch (IOException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            } catch (JSONException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+            return null;
+        }
 
 
-
-		@Override
-		protected void onPostExecute(Void result) {
-			// TODO Auto-generated method stub
-			dialog.dismiss();
-
+        @Override
+        protected void onPostExecute(Void result) {
+            // TODO Auto-generated method stub
+            dialog.dismiss();
 
 
-			super.onPostExecute(result);
-			
-			textView.setText(date);
-			textViewObservationDate.setText(Time);
-			textViewObservationTime.setText(hourMaxTemp);
-			textViewWindchill.setText(temp);
-			textViewHourMaxTemp.setText(hourMinTemp);
-			textViewHourMinTemp.setText(windchill);
-			textViewWindSpeed.setText(windSpeed);
-			textViewWindDirection.setText(windDirection);
-			}
-		
-	}
-	
+            super.onPostExecute(result);
+
+            textView.setText(date);
+            textViewObservationDate.setText(Time);
+            textViewObservationTime.setText(hourMaxTemp);
+            textViewWindchill.setText(temp);
+            textViewHourMaxTemp.setText(hourMinTemp);
+            textViewHourMinTemp.setText(windchill);
+            textViewWindSpeed.setText(windSpeed);
+            textViewWindDirection.setText(windDirection);
+        }
+
+    }
+
 }
