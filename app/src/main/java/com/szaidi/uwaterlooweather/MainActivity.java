@@ -220,13 +220,17 @@ public class MainActivity extends Activity {
                 Date time = new Date();
                 Time = fmt.format(time);
 
-
                 temp = temp + "°c";
                 hourMaxTemp = "high of " + hourMaxTemp + "°c";
                 hourMinTemp = "low of " + hourMinTemp + "°c";
 
+                if(windchill == "null"){
+                    windchill = "feels like " + temp;
+                }
+                else {
+                    windchill = "feels like " + windchill + "°c";
+                }
 
-                windchill = "feels like " + windchill + "°c";
                 windSpeed = windSpeed + " km/h";
 
                 int windDirectionInt = Integer.valueOf(windDirection);

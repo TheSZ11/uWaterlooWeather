@@ -1,4 +1,4 @@
-C:\Users\Sajjad\Documents\GitHub\uWaterlooWeather\app\build\intermediates\classes\debug
-C:\Users\Sajjad\Documents\GitHub\uWaterlooWeather\app\build\intermediates\pre-dexed\debug\support-annotations-21.0.3-d2173d36e782fa1d3f28e5e6281942ff95c70054.jar
-C:\Users\Sajjad\Documents\GitHub\uWaterlooWeather\app\build\intermediates\pre-dexed\debug\internal_impl-21.0.3-c6cfb959221538d30dbd834bdfdc5fb600f0a285.jar
-C:\Users\Sajjad\Documents\GitHub\uWaterlooWeather\app\build\intermediates\pre-dexed\debug\classes-875d1bf09c1a4efe197a6241ae28ac40d744053f.jar
+/Users/dx089/AndroidStudioProjects/uWaterlooWeather/app/build/intermediates/classes/debug
+/Users/dx089/AndroidStudioProjects/uWaterlooWeather/app/build/intermediates/pre-dexed/debug/support-annotations-21.0.3-59bc6f4cd9afe5fb1098d3bbd1bb069dd8004231.jar
+/Users/dx089/AndroidStudioProjects/uWaterlooWeather/app/build/intermediates/pre-dexed/debug/internal_impl-21.0.3-c466fbbe5c0ed059c60dd1f4d8ac159b801e2d4e.jar
+/Users/dx089/AndroidStudioProjects/uWaterlooWeather/app/build/intermediates/pre-dexed/debug/classes-1758f2f8404fed805d1e888452c918eb4db43058.jar
