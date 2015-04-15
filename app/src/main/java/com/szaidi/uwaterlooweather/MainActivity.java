@@ -224,10 +224,9 @@ public class MainActivity extends Activity {
                 hourMaxTemp = "high of " + hourMaxTemp + "°c";
                 hourMinTemp = "low of " + hourMinTemp + "°c";
 
-                if(windchill == "null"){
+                if (windchill == "null") {
                     windchill = "feels like " + temp;
-                }
-                else {
+                } else {
                     windchill = "feels like " + windchill + "°c";
                 }
 
@@ -291,7 +290,6 @@ public class MainActivity extends Activity {
         protected void onPostExecute(Void result) {
             // TODO Auto-generated method stub
             dialog.dismiss();
-
 
             super.onPostExecute(result);
 

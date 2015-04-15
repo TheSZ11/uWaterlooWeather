@@ -99,9 +99,9 @@
         android:layout_weight="1"
         
         android:gravity="center"
-        android:background="#000000"
+        android:background="#FCD450"
         android:textSize="30sp"
-        android:textColor="#FFFFFF" />
+        android:textColor="#000" />
 
     </LinearLayout>
 
