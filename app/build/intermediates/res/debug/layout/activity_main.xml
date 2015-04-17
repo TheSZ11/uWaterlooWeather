@@ -1,110 +1,111 @@
-<android.support.v4.widget.SwipeRefreshLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v4.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/swipe_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+
     <ScrollView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:fillViewport="true">
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-  >
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="fill_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:background="#FCD450"
-        android:gravity="center"
-        android:textSize="30sp"
-        android:typeface="sans" />
-    <TextView
-        android:id="@+id/textViewObservationDate"
-        android:layout_width="fill_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:background="#000000"
-        android:gravity="center"
-        android:textSize="30sp"
-        android:textColor="#FFFFFF"
-         />
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
 
-    <TextView
-        android:id="@+id/textViewObservationTime"
-        android:layout_width="fill_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:background="#FCD450"
-        android:gravity="center"
-        android:textSize="30sp"
-         />
-    <TextView
-        android:id="@+id/textViewWindchill"
-        android:layout_width="fill_parent"
-        android:layout_height="0dp"
-        android:layout_weight="3"
-        android:background="#000000"
-        android:gravity="center"
-        android:textSize="70sp"
-        android:textColor="#FFFFFF"
-        />
-    <TextView
-        android:id="@+id/textViewHourMaxTemp"
-        android:layout_width="fill_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:background="#FCD450"
-        android:gravity="center"
-        android:textSize="30sp"
-        />
-    <TextView
-        android:id="@+id/textViewHourMinTemp"
-        android:layout_width="fill_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:background="#000000"
-        android:gravity="center"
-        android:textSize="30sp"
-        android:textColor="#FFFFFF"
-        />
-    
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:gravity="center"
-        android:orientation="horizontal" 
-        >
-        
-    <TextView
-        android:id="@+id/textViewWindSpeed"
-        android:layout_width="0dp"
-        android:layout_height="fill_parent"
-        android:layout_weight="1"
-        
-        android:gravity="center"
-        android:background="#FCD450"
-        android:textSize="30sp" />
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="fill_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:background="#FCD450"
+                android:gravity="center"
+                android:textSize="30sp"
+                android:typeface="sans" />
 
-    <TextView
-        android:id="@+id/textViewWindDirection"
-        android:layout_width="0dp"
-        android:layout_height="fill_parent"
-        android:layout_weight="1"
-        
-        android:gravity="center"
-        android:background="#FCD450"
-        android:textSize="30sp"
-        android:textColor="#000" />
+            <TextView
+                android:id="@+id/textViewObservationDate"
+                android:layout_width="fill_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:background="#000000"
+                android:gravity="center"
+                android:textSize="30sp"
+                android:textColor="#FFFFFF" />
 
-    </LinearLayout>
+            <TextView
+                android:id="@+id/textViewObservationTime"
+                android:layout_width="fill_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:background="#FCD450"
+                android:gravity="center"
+                android:textSize="30sp" />
 
-</LinearLayout>
+            <TextView
+                android:id="@+id/textViewWindchill"
+                android:layout_width="fill_parent"
+                android:layout_height="0dp"
+                android:layout_weight="3"
+                android:background="#000000"
+                android:gravity="center"
+                android:textSize="70sp"
+                android:textColor="#FFFFFF" />
+
+            <TextView
+                android:id="@+id/textViewHourMaxTemp"
+                android:layout_width="fill_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:background="#FCD450"
+                android:gravity="center"
+                android:textSize="30sp" />
+
+            <TextView
+                android:id="@+id/textViewHourMinTemp"
+                android:layout_width="fill_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:background="#000000"
+                android:gravity="center"
+                android:textSize="30sp"
+                android:textColor="#FFFFFF" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/textViewWindSpeed"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1"
+
+                    android:gravity="center"
+                    android:background="#FCD450"
+                    android:textSize="30sp" />
+
+                <TextView
+                    android:id="@+id/textViewWindDirection"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1"
+
+                    android:gravity="center"
+                    android:background="#FCD450"
+                    android:textSize="30sp"
+                    android:textColor="#000" />
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
     </ScrollView>
+
 </android.support.v4.widget.SwipeRefreshLayout><!-- From: file:/Users/dx089/AndroidStudioProjects/uWaterlooWeather/app/src/main/res/layout/activity_main.xml -->

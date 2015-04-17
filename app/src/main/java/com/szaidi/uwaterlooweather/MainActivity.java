@@ -32,8 +32,10 @@ import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v4.widget.SwipeRefreshLayout.OnRefreshListener;
 import android.view.Menu;
+import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 public class MainActivity extends Activity {
@@ -160,16 +162,16 @@ public class MainActivity extends Activity {
 
     public class WeatherListTask extends AsyncTask<Void, Void, Void> {
 
-        ProgressDialog dialog;
+        ProgressBar dialog;
 
         @Override
         protected void onPreExecute() {
             // TODO Auto-generated method stub
 
 
-            dialog = new ProgressDialog(context);
-            dialog.setTitle("Connecting to satellites...");
-            dialog.show();
+            dialog = new ProgressBar(context);
+            //dialog.setTitle("Connecting to satellites...");
+            dialog.setVisibility(View.VISIBLE);
             super.onPreExecute();
         }
 
@@ -289,7 +291,7 @@ public class MainActivity extends Activity {
         @Override
         protected void onPostExecute(Void result) {
             // TODO Auto-generated method stub
-            dialog.dismiss();
+            dialog.setVisibility(View.GONE);
 
             super.onPostExecute(result);
 
