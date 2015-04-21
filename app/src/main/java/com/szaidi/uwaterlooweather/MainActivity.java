@@ -25,10 +25,12 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v4.widget.SwipeRefreshLayout.OnRefreshListener;
 import android.view.Menu;
@@ -68,6 +70,8 @@ public class MainActivity extends Activity {
     WeatherListTask loaderTask;
 
     int statusCode;
+
+    private ProgressBar spinner;
 
 
     public boolean isInternetAvailable() {
@@ -113,7 +117,6 @@ public class MainActivity extends Activity {
         swipeLayout.setColorSchemeColors(Color.BLACK, Color.YELLOW);
 
         swipeLayout.setOnRefreshListener(onRefreshListener);
-
 
         textView = (TextView) findViewById(R.id.textView);
         textViewObservationDate = (TextView) findViewById(R.id.textViewObservationDate);
@@ -162,16 +165,13 @@ public class MainActivity extends Activity {
 
     public class WeatherListTask extends AsyncTask<Void, Void, Void> {
 
-        ProgressBar dialog;
-
         @Override
         protected void onPreExecute() {
             // TODO Auto-generated method stub
+            spinner = (ProgressBar) findViewById(R.id.progressbar);
+            //spinner.getIndeterminateDrawable().setColorFilter(0xFFcc0000, PorterDuff.Mode.MULTIPLY);
+            spinner.setVisibility(View.VISIBLE);
 
-
-            dialog = new ProgressBar(context);
-            //dialog.setTitle("Connecting to satellites...");
-            dialog.setVisibility(View.VISIBLE);
             super.onPreExecute();
         }
 
@@ -291,7 +291,7 @@ public class MainActivity extends Activity {
         @Override
         protected void onPostExecute(Void result) {
             // TODO Auto-generated method stub
-            dialog.setVisibility(View.GONE);
+            spinner.setVisibility(View.GONE);
 
             super.onPostExecute(result);
 
