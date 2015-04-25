@@ -138,7 +138,7 @@ public class MainActivity extends Activity {
 
             if (!isInternetAvailable()) {
                 alert.setTitle("Connectivity Issues");
-                alert.setMessage("Your feed could not be updated at this time, please check your internet connection and try again.");
+                alert.setMessage("Your feed could not be refreshed at this time, please check your internet connection and try again.");
                 alert.setPositiveButton("Okay",
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
