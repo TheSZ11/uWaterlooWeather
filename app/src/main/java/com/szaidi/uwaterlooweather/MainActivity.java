@@ -234,45 +234,49 @@ public class MainActivity extends Activity {
 
                 windSpeed = windSpeed + " km/h";
 
-                int windDirectionInt = Integer.valueOf(windDirection);
+                if(windDirection != "null"){
 
-                if (348.75 <= windDirectionInt && windDirectionInt <= 360) {
-                    windDirection = "N";
-                } else if (0 <= windDirectionInt && windDirectionInt <= 11.25) {
-                    windDirection = "N";
-                } else if (11.25 < windDirectionInt && windDirectionInt <= 33.75) {
-                    windDirection = "NNE";
-                } else if (33.75 < windDirectionInt && windDirectionInt <= 56.25) {
-                    windDirection = "NE";
-                } else if (56.25 < windDirectionInt && windDirectionInt <= 78.75) {
-                    windDirection = "ENE";
-                } else if (78.75 < windDirectionInt && windDirectionInt <= 101.25) {
-                    windDirection = "E";
-                } else if (101.25 < windDirectionInt && windDirectionInt <= 123.75) {
-                    windDirection = "ESE";
-                } else if (123.75 < windDirectionInt && windDirectionInt <= 146.25) {
-                    windDirection = "SE";
-                } else if (146.25 < windDirectionInt && windDirectionInt <= 168.75) {
-                    windDirection = "SSE";
-                } else if (168.75 < windDirectionInt && windDirectionInt <= 191.25) {
-                    windDirection = "S";
-                } else if (191.25 < windDirectionInt && windDirectionInt <= 213.75) {
-                    windDirection = "SSW";
-                } else if (213.75 < windDirectionInt && windDirectionInt <= 236.25) {
-                    windDirection = "SW";
-                } else if (236.25 < windDirectionInt && windDirectionInt <= 258.75) {
-                    windDirection = "WSW";
-                } else if (258.75 < windDirectionInt && windDirectionInt <= 281.25) {
-                    windDirection = "W";
-                } else if (281.25 < windDirectionInt && windDirectionInt <= 303.75) {
-                    windDirection = "WNW";
-                } else if (303.75 < windDirectionInt && windDirectionInt <= 326.25) {
-                    windDirection = "NW";
-                } else if (326.25 < windDirectionInt && windDirectionInt < 348.75) {
-                    windDirection = "NNW";
+                    int windDirectionInt = Integer.valueOf(windDirection);
+
+                    if (348.75 <= windDirectionInt && windDirectionInt <= 360) {
+                        windDirection = "N";
+                    } else if (0 <= windDirectionInt && windDirectionInt <= 11.25) {
+                        windDirection = "N";
+                    } else if (11.25 < windDirectionInt && windDirectionInt <= 33.75) {
+                        windDirection = "NNE";
+                    } else if (33.75 < windDirectionInt && windDirectionInt <= 56.25) {
+                        windDirection = "NE";
+                    } else if (56.25 < windDirectionInt && windDirectionInt <= 78.75) {
+                        windDirection = "ENE";
+                    } else if (78.75 < windDirectionInt && windDirectionInt <= 101.25) {
+                        windDirection = "E";
+                    } else if (101.25 < windDirectionInt && windDirectionInt <= 123.75) {
+                        windDirection = "ESE";
+                    } else if (123.75 < windDirectionInt && windDirectionInt <= 146.25) {
+                        windDirection = "SE";
+                    } else if (146.25 < windDirectionInt && windDirectionInt <= 168.75) {
+                        windDirection = "SSE";
+                    } else if (168.75 < windDirectionInt && windDirectionInt <= 191.25) {
+                        windDirection = "S";
+                    } else if (191.25 < windDirectionInt && windDirectionInt <= 213.75) {
+                        windDirection = "SSW";
+                    } else if (213.75 < windDirectionInt && windDirectionInt <= 236.25) {
+                        windDirection = "SW";
+                    } else if (236.25 < windDirectionInt && windDirectionInt <= 258.75) {
+                        windDirection = "WSW";
+                    } else if (258.75 < windDirectionInt && windDirectionInt <= 281.25) {
+                        windDirection = "W";
+                    } else if (281.25 < windDirectionInt && windDirectionInt <= 303.75) {
+                        windDirection = "WNW";
+                    } else if (303.75 < windDirectionInt && windDirectionInt <= 326.25) {
+                        windDirection = "NW";
+                    } else if (326.25 < windDirectionInt && windDirectionInt < 348.75) {
+                        windDirection = "NNW";
+                    }
                 } else {
                     windDirection = "-";
                 }
+
 
             } catch (ClientProtocolException e) {
 
