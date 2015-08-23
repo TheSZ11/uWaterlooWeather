@@ -15,7 +15,7 @@ int id textViewWindchill 0x7f080004
 int layout activity_main 0x7f030000
 int layout weather_list_item 0x7f030001
 int menu main 0x7f070000
-int string action_settings 0x7f050000
-int string app_name 0x7f050001
-int style AppBaseTheme 0x7f060000
-int style AppTheme 0x7f060001
+int string action_settings 0x7f060000
+int string app_name 0x7f060001
+int style AppBaseTheme 0x7f050000
+int style AppTheme 0x7f050001

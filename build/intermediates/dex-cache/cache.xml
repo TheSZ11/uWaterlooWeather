@@ -6,21 +6,21 @@
         jumboMode="false"
         revision="21.1.2"
         sha1="01ec05bfbafcc07646ba813000bf2ef11742dd03">
-        <dex dex="C:\Users\Sajjad\Development\uWaterlooWeather\app\build\intermediates\pre-dexed\debug\internal_impl-21.0.3-d24540040a8558b3eda080e5a4efd50f256d29f3.jar" />
+        <dex dex="C:\Users\Sajjad\Development\uWaterlooWeather\app\build\intermediates\pre-dexed\release\internal_impl-21.0.3-d24540040a8558b3eda080e5a4efd50f256d29f3.jar" />
     </item>
     <item
         jar="C:\Users\Sajjad\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\21.0.3\support-annotations-21.0.3.jar"
         jumboMode="false"
         revision="21.1.2"
         sha1="4b74cefe1f0c1b819e7260c8627a14674e37fd35">
-        <dex dex="C:\Users\Sajjad\Development\uWaterlooWeather\app\build\intermediates\pre-dexed\debug\support-annotations-21.0.3-75e609db46b0f7f06c35411cbf1f28e1dede8e0c.jar" />
+        <dex dex="C:\Users\Sajjad\Development\uWaterlooWeather\app\build\intermediates\pre-dexed\release\support-annotations-21.0.3-75e609db46b0f7f06c35411cbf1f28e1dede8e0c.jar" />
     </item>
     <item
         jar="C:\Users\Sajjad\Development\uWaterlooWeather\app\build\intermediates\exploded-aar\com.android.support\support-v4\21.0.3\jars\classes.jar"
         jumboMode="false"
         revision="21.1.2"
         sha1="2c91c949a45a21cdecf26e03951e46c7beec9ad8">
-        <dex dex="C:\Users\Sajjad\Development\uWaterlooWeather\app\build\intermediates\pre-dexed\debug\classes-21bbce7ff4f6e9b3c9d180836501359293861c9c.jar" />
+        <dex dex="C:\Users\Sajjad\Development\uWaterlooWeather\app\build\intermediates\pre-dexed\release\classes-21bbce7ff4f6e9b3c9d180836501359293861c9c.jar" />
     </item>
 
 </items>
