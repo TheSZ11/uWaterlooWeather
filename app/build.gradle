@@ -5,7 +5,7 @@ android {
     buildToolsVersion "21.1.2"
 
     defaultConfig {
-        applicationId "com.szaidi.uwaterlooweather"
+        applicationId "com.szaidi.uwaterlooweather2"
         minSdkVersion 8
         targetSdkVersion 19
     }
